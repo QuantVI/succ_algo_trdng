@@ -5,12 +5,12 @@ This repository contains code replciateing and modifying that presented in the b
 
 The Aims (clear-cut, feasible, and/or astronomical) of this project are the following:
 1. Take action beyond reading the book
-2. Next-level coding  
+2. Coding skill improvement  
    a. Practice Python 3.X
       - the book tuilized Python 2.X code. Though it tried to be forward-looking
       - I'm well-versed in basic Python "scripting" . This project allows be to build a _live_ srcipt :arrow_right: an "app"
       - additionally, work with or continue to work with some popular libraries (e.g. pandas by Wes McKinney)  
-   b. A purely coded Python app, is programming, maybe even software engineering
+   b. A purely coded Python app, is programming, maybe even software engineering  
       - Programming moves a mathematical & technical user beyong the world of drag-n-drop, and menus (No Excel!)
       - This interpreted language has high human-readability, and up-to-date speed, and application (No Excel/VBA!)
 3. Bring to life the elements of my Financial Engineering masters program
