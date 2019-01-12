@@ -1,5 +1,5 @@
 ###### succ_algo_trdng (Successful Algorithmic Trading - Build)
-##### _Successful Algorithmic Trading_ is a book my M.H.Moore, that gives insight into, investigation about, and implementation of statistical machine learning for trading.
+##### _Successful Algorithmic Trading_ is a book my M.H. Moore, that gives insight into, investigation about, and implementation of statistical machine learning for trading.
 
 This repository contains code replicating and modifying that presented in the book. The modifications to the code are less important than modifications of the trading strategies implemented - but in type and number.
 
