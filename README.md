@@ -1,2 +1,2 @@
 ###### succ_algo_trdng (Sucessful Algorithmic Trading - Build)
-##### __Successful Angorithmic Trading__ is
+##### _Successful Angorithmic Trading_ is a book my M.H.Moore
