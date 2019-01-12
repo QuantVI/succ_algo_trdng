@@ -5,7 +5,7 @@ This repository contains code replciateing and modifying that presented in the b
 
 The Aims (clear-cut, feasible, and/or astronomical) of this project are the following:
 1. Take action beyond reading the book
-2. Next-level coding
+2. Next-level coding  
    a. Practice Python 3.X
    - the book tuilized Python 2.X code. Though it tried to be forward-looking
    - I'm well-versed in basic Python "script" writing. This project allows be to build a _live_ srcipt :arrow_right: an "app"
