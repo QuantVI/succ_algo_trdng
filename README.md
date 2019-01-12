@@ -7,15 +7,20 @@ The Aims (clear-cut, feasible, and/or astronomical) of this project are the foll
 1. Take action beyond reading the book
 2. Next-level coding  
    a. Practice Python 3.X
-   - the book tuilized Python 2.X code. Though it tried to be forward-looking
-   - I'm well-versed in basic Python "script" writing. This project allows be to build a _live_ srcipt :arrow_right: an "app"
-   - additionally, work with or continue to work with some popular libraries (e.g. pandas by Wes McKinney)
-   - A purely coded Python app, is programming, maybe even software engineering
+      - the book tuilized Python 2.X code. Though it tried to be forward-looking
+      - I'm well-versed in basic Python "scripting" . This project allows be to build a _live_ srcipt :arrow_right: an "app"
+      - additionally, work with or continue to work with some popular libraries (e.g. pandas by Wes McKinney)  
+   b. A purely coded Python app, is programming, maybe even software engineering
+      - Programming moves a mathematical & technical user beyong the world of drag-n-drop, and menus (No Excel!)
+      - This interpreted language has high human-readability, and up-to-date speed, and application (No Excel/VBA!)
 3. Bring to life the elements of my Financial Engineering masters program
    - Econometrics: is alive and well in this book. It's time to use time-series
    - Derivatives: are more comlpex investment vehicls. Can we used a derivative-based strategy?
    - Et cetera
-4.
+   - Practical use of master's level mathematics, moves the user beyond the world of dashboards and anaytics
+4. Approximate a Quantitative Analyst (in the Finance/Investment career space)  
+   - A Quantitative Analyst can be defined using the analog of a visual Artist
+     - A Qu
 
 
 
