@@ -1,5 +1,5 @@
 ###### succ_algo_trdng (Sucessful Algorithmic Trading - Build)
-##### _Successful Angorithmic Trading_ is a book my M.H.Moore, that gives insight into, investigation about, and implementation of, a statistical machine learning for trading.
+##### _Successful Angorithmic Trading_ is a book my M.H.Moore, that gives insight into, investigation about, and implementation of statistical machine learning for trading.
 
 This repository contains code replciateing and modifying that presented in the book. The modifiations to the code are less important than modifications of the trading strategies implemented - but in type and number.
 
@@ -33,9 +33,11 @@ The Aims (clear-cut, feasible, and/or astronomical) of this project are the foll
        - objective Mathematical ability
          - presenting the Financial subject utilizeing programming with the high-level Mathematical precision
          - this Mathematical ability is objectively higher than the average untrained person, or thos with less training
-           - e.g. a typical, Data(base) Analyst, Financial Analyst, etc
-
-
+           - e.g. A typical Data(base)/Financial/Business Intelligence - Analyst, Data Scientist
+5. Augment the syetm with a different Machine Learning system than used in the book
+   - Can the hreat of ous engine use an Neural Network instead?
+6. (Astronomical) Auto Strategies
+   - if there was a way to bottle the concept of a signal, automatical create them, and automaticall compare their timing with that of market movements, you'd have an auto-alpha-generating system.
 
 
 https://en.wikipedia.org/wiki/List_of_S%26P_500_companies
