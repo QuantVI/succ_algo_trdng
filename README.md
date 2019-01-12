@@ -20,11 +20,20 @@ The Aims (clear-cut, feasible, and/or astronomical) of this project are the foll
    - Practical use of master's level mathematics, moves the user beyond the world of dashboards and anaytics
 4. Approximate a Quantitative Analyst (in the Finance/Investment career space)  
    - A Quantitative Analyst can be defined using the analog of a Visual Artist
-     - A Visual Artist (e.g. painter, sculptor) is considered professional, when they bring 3 skills to a high level
+     - A __Visual Artist__ (e.g. painter, sculptor) is considered professional, when they bring 3 skills to a high level
        - depiction of a subject
        - proper use of a medium
-       - objective artistic ability (presentig thhe subject via the medium in specific/prolicif/elucidating ways
-     Quantitative ana
+       - objective Artistic ability
+         - presenting the subject via the medium in specific, prolific, elucidating ways
+         - this Artistic ability is objectively higher than the average untrained person, or those with less training
+           - e.g. A child with water colors, most who draw with pen(s) and paper
+     - A __Quantitative Analyst__ is considered professional, when they bring 3 skills to a high level
+       - depiction of the subject(s) of Investments/Assets/Finance
+       - proper use of a medium known as the programming language (Pyton > R > SAS > VBA > Tableau)
+       - objective Mathematical ability
+         - presenting the Financial subject utilizeing programming with the high-level Mathematical precision
+         - this Mathematical ability is objectively higher than the average untrained person, or thos with less training
+           - e.g. a typical, Data(base) Analyst, Financial Analyst, etc
 
 
 
