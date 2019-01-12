@@ -16,11 +16,15 @@ The Aims (clear-cut, feasible, and/or astronomical) of this project are the foll
 3. Bring to life the elements of my Financial Engineering masters program
    - Econometrics: is alive and well in this book. It's time to use time-series
    - Derivatives: are more comlpex investment vehicls. Can we used a derivative-based strategy?
-   - Et cetera
+   - Portfolio Theory, et cetera.
    - Practical use of master's level mathematics, moves the user beyond the world of dashboards and anaytics
 4. Approximate a Quantitative Analyst (in the Finance/Investment career space)  
-   - A Quantitative Analyst can be defined using the analog of a visual Artist
-     - A Qu
+   - A Quantitative Analyst can be defined using the analog of a Visual Artist
+     - A Visual Artist (e.g. painter, sculptor) is considered professional, when they bring 3 skills to a high level
+       - depiction of a subject
+       - proper use of a medium
+       - objective artistic ability (presentig thhe subject via the medium in specific/prolicif/elucidating ways
+     Quantitative ana
 
 
 
