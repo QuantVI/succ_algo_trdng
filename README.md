@@ -30,7 +30,7 @@ The Aims (clear-cut, feasible, and/or astronomical) of this project are the foll
            - e.g. A child with water colors, most who draw with pen(s) and paper
      - A __Quantitative Analyst__ is considered professional, when they bring 3 skills to a high level
        - depiction of the subject(s) of Investments/Assets/Finance
-       - proper use of a medium known as the programming language (Python > R > VBA > SAS > Tableau)
+       - proper use of a medium known as the programming language (Python > R > VBA > SAS)
        - objective Mathematical ability
          - presenting the Financial subject utilizing programming with the high-level Mathematical precision
          - this Mathematical ability is objectively higher than the average untrained person, or those with less training
