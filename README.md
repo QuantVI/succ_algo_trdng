@@ -3,7 +3,7 @@
 
 This repository contains code replicating and modifying that presented in the book. The modifications to the code are less important than modifications of the trading strategies implemented - but in type and number.
 
-The Aims (clear-cut, feasible, and/or astronomical) of this project are the following:
+The aims (clear-cut, feasible, and/or astronomical) of this project are the following:
 1. Take action beyond reading the book
 2. Coding skill improvement  
    a. Practice Python 3.X
