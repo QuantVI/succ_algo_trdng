@@ -39,6 +39,6 @@ The Aims (clear-cut, feasible, and/or astronomical) of this project are the foll
    - Can the heart of our engine use a Neural Network instead?
 6. (Astronomical) Auto Strategies
    - if there was a way to bottle the concept of a signal, automatically create them, and automaticall compare their timing with that of market movements, you'd have an auto-alpha-generating system.
-
+7. Program the system on a Raspberry Pi (linux environment) after verifying the base works on MacOSX (and possibly Windows10) 
 
 https://en.wikipedia.org/wiki/List_of_S%26P_500_companies
