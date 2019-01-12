@@ -18,7 +18,7 @@ The Aims (clear-cut, feasible, and/or astronomical) of this project are the foll
    - Derivatives: are more comlpex investment vehicls. Can we used a derivative-based strategy?
    - Portfolio Theory, et cetera.
    - Practical use of master's level mathematics, moves the user beyond the world of dashboards and anaytics
-4. Approximate a Quantitative Analyst (in the Finance/Investment career space)  
+4. Approximate activites of a Quantitative Analyst (e.g. alpha-strategy testing and implementation)  
    - A Quantitative Analyst can be defined using the analog of a Visual Artist
      - A __Visual Artist__ (e.g. painter, sculptor) is considered professional, when they bring 3 skills to a high level
        - depiction of a subject
