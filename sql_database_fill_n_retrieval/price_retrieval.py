@@ -35,6 +35,7 @@ def obtain_list_of_db_tickers():
     # https://query1.finance.yahoo.com/v7/finance/download/MSFT?
     # period1=1544723038&period2=1547401438&interval=1d
     # &events=history&crumb=IMF/v130KPT
+# Changes in url consturction are necessary
 
 def get_daily_historic_data_yahoo( \
     ticker, start_date=(2000,1,1),
