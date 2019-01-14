@@ -14,7 +14,7 @@ Specifically this video ...
 Personal modificaitons included ways to retry, and adding pausing/sleeping between requests.
 
 ## Minor
-![MySQL icon](https://media.licdn.com/dms/image/C4D0BAQFqVGAsoMsnNw/company-logo_200_200/0?e=1555545600&v=beta&t=gJsqIF24vS-zYYiHrnvvpuuaT1v03TfdF6n6xMsn-TY)
+![MySQL icon](/z_other/MySQL_logo.png)
 ### in ..... for sql
 The connector to the MySQL database had to be modified.
 Specifically,
