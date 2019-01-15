@@ -17,7 +17,9 @@ The package is ...., and I used it in a previous script, when going through some
 Specifically this video ...
 
 ### in *insert_symbols.py*
-[see here](/NOTES.md#sql_conn)
+- Changes to [db connection](/NOTES.md#sql_conn)
+- The `with` functionality does not work with our connector. It's purpose is to `.close()` the connection once the indented lines of the with are completed.
+- In place of `with con:`, I use, in order, `cursor`, `executemany`, `commit`, `close`.
 
 Personal modificaitons included ways to retry, and adding pausing/sleeping between requests.
 
