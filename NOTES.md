@@ -4,7 +4,7 @@ Attempt to keep track of, mostly, major changes to the code fomr the book.
 Due to the fact that both the internet, and various software, etc are constantly evolving, both minor and major changes to the given code were needed in order to get things working and deployed.
 
 ## Major
-### in general
+### in general  
 ######sql_conn:  
 I have to use a different connector to MySQL. The book uses the package `MySQLdb`. In its place, I use `mysql.connector`.
 
