@@ -19,6 +19,6 @@ Personal modificaitons included ways to retry, and adding pausing/sleeping betwe
 The connector to the MySQL database had to be modified.
 Specifically,
 
-### .sql database creation
-a separate fle was made for the creation of each table in the sql database. In the book, these were held in one ddl file called ...
+### MySQL database creation
+a separate fle was made for the creation of each table in the sql database. In the book, these were held in one ddl file called asdf^(s)
 
