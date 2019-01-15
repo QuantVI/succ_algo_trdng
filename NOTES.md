@@ -5,7 +5,7 @@ Due to the fact that both the internet, and various software, etc are constantly
 
 ## Major
 ### in general
-######sql_conn:
+######sql_conn:  
 I have to use a different connector to MySQL. The book uses the package `MySQLdb`. In its place, I use `mysql.connector`.
 
 ### in ... retrieval
