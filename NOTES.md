@@ -20,5 +20,5 @@ The connector to the MySQL database had to be modified.
 Specifically,
 
 ### MySQL database creation
-a separate fle was made for the creation of each table in the sql database. In the book, these were held in one ddl file called ==asdf==
+a separate fle was made for the creation of each table in the sql database. In the book, these were held in one ddl file called ~~asdf~~ _ghjk_ ~asdf~ *ghjk*
 
