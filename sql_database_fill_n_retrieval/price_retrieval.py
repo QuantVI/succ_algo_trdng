@@ -73,4 +73,7 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
     # Create the time now
     now = datetime.datetime.now()
 
-    # Amend the data to inclide the vendor ID and symbol ID
+    # Amend the data to include the vendor ID and symbol ID
+    # use df['new_col'] = 'repeat string in every row'
+    # to add new columns with those ids
+    
