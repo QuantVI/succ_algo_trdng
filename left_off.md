@@ -28,3 +28,15 @@ we will continue working with the _price retrieval_ file.
 considering having an entire test directory.
 
 ##### conclusion
+need to complete price retrieval to store things in databse. However, need to test current functionality first.
+
+2019-02-16
+
+##### recap
+need to test `price_retrieval.py` functionality.
+
+##### intermediate
+for now, i will test files using a (possibly matching) single file. so for each .py used in the applicaiton, there will be another .py with thest for that file.
+
+##### conclusion
+with the test file in place, the next thing to do would be to add the approprate code to put the dataframe data into the MySQL database, symbol by symbol.
