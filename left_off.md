@@ -25,5 +25,6 @@ Book Page 56 (65/208) "Price Retrieval"
 we will continue working with the _price retrieval_ file.
 
 ##### intermediate
+considering having an entire test directory.
 
-##### concludusion
+##### conclusion
