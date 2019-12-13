@@ -16,7 +16,7 @@ this is like "relase notes"
 2019-02-15
 
 ##### recap
-it seems the last things I idd was make a prototype file for price retrival.py
+it seems the last things I did was make a prototype file for price retrival.py
 
 in the book, `requests` is used, but we can use `pandas.datareader` which also has a way, though obscrued, to read from Yahoo! Finance without supplying the direct url for manipulation.
 
@@ -36,7 +36,7 @@ need to complete price retrieval to store things in databse. However, need to te
 need to test `price_retrieval.py` functionality.
 
 ##### intermediate
-for now, i will test files using a (possibly matching) single file. so for each .py used in the applicaiton, there will be another .py with thest for that file.
+for now, i will test files using a (possibly matching) single file. so for each .py used in the applicaiton, there will be another .py with tests for that file.
 
 ##### conclusion
 with the test file in place, the next thing to do would be to add the approprate code to put the dataframe data into the MySQL database, symbol by symbol.
