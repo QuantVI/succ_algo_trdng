@@ -49,3 +49,7 @@ needed to test price_retrieval
 `import price_retrieval as pr` in my test file causes an issue. This has been traced to `import pandas_datareader.data as web` not working. The error is `ImportError: cannot import name 'StringIO'`.
 
 This worked previously. However, we wil have to revert the the books verions, or midification thereof, to download data from Yahoo!Finance.
+
+`_test_price_retrieval.py` can be ignored.
+
+In the original price_retrieval.py, you could get Yahoo!Finance data from [ichart.finance.yahoo.com](). This is no longer the case. The new type of URL uses Unix timestamps.

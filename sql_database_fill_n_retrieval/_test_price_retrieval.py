@@ -3,6 +3,13 @@
 
 import price_retrieval as pr
 
+DOCUMENTATION = """
+2019-12-13 update
+    due to issues with pandas datareader price_retrieval must be rewritten.
+    this file is considered deprecated and should not be used.
+"""
+
+
 # A list of output messages
 om = ['\n\tTest {} has no specific message.\n']
 
