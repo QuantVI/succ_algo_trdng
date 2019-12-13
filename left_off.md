@@ -40,3 +40,12 @@ for now, i will test files using a (possibly matching) single file. so for each 
 
 ##### conclusion
 with the test file in place, the next thing to do would be to add the approprate code to put the dataframe data into the MySQL database, symbol by symbol.
+
+2019-12-13
+##### recap
+needed to test price_retrieval
+
+##### intermediate
+`import price_retrieval as pr` in my test file causes an issue. This has been traced to `import pandas_datareader.data as web` not working. The error is `ImportError: cannot import name 'StringIO'`.
+
+This worked previously. However, we wil have to revert the the books verions, or midification thereof, to download data from Yahoo!Finance.
