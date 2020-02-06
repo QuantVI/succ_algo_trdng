@@ -75,9 +75,12 @@ Working with price_retrieval.py
 
 1. Have moved to the daily quotes storage pieces. In the original, the fetched data was more or less in text format. After using .split() its indexable. We however, have fetched directly into a DataFrame, and must retrieve the right quantitiy of each row differently.
 
-1. .
+1. Some tiker symbols will either not be in the Yahoo Finance data, or given an error when being retrieved. We will manually ignore these tickers. 
+  2. Since the `executemany()` statement is used to insert data into the database, if even one symbol is missing data, then nothing is commited to the db.
+  3. This is okay, since we'd otherwise have duplicate data if we start the process over again. However, it does have other problems. A more robust solution would check th db for data for the current time(span) for a symbol, and also remove unretrievable symbols from the currne tlist of symbols we need to download data for.
+  4. Then the process could retry until successful, as we would either remove all symbol for mthe list as unobtainable, see that the db already has todays (span of) data, or get and insert everything.
 
-1. .
+1. Changed two method to print the bad ticker and continue. Needing to restart the process 280+ tickers in is crazy.
 
 1. .
 

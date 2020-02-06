@@ -105,6 +105,7 @@ def get_daily_historic_data_yahoo( \
     
     except Exception as e:
         print("Could not download Yahoo data: \n\t%s" %e)
+        pass
 
     # the returned dataframe will have its values taken and put into MySQL.
 
@@ -140,38 +141,72 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
         >>> sdl[0][1]["High"]
         1898.010009765625
         """
-    df_to_rows = [row for row in daily_data.iterrows()]
+    try:
+        df_to_rows = [row for row in daily_data.iterrows()]
 
-    # creaing the row-by-row data
-    # prefer to reference by item name, than by index
-    row_data = [(data_vendor_id, symbol_id, dfr[0],
-                        now, now, # created and last updated dates
-                        dfr[1]["Open"], dfr[1]["High"],
-                        dfr[1]["Low"], dfr[1]["Close"],
-                        dfr[1]["Volume"], dfr[1][5] # adj close has a space
-                        ) for dfr in df_to_rows
-                       ]
+        # creaing the row-by-row data
+        # prefer to reference by item name, than by index
+        row_data = [(data_vendor_id, symbol_id, dfr[0],
+                            now, now, # created and last updated dates
+                            dfr[1]["Open"], dfr[1]["High"],
+                            dfr[1]["Low"], dfr[1]["Close"],
+                            dfr[1]["Volume"], dfr[1][5] # adj close has a space
+                            ) for dfr in df_to_rows
+                           ]
 
-    # create the insert strings
-    column_str = """data_vendor_id, symbol_id, price_date, created_date,
-                    last_updated_date, open_price, high_price, low_price,
-                    close_price, volume, adj_close_price"""
-    
-    insert_str = ("%s, " * 11)[:-2]
-    begin_str = "INSERT INTO daily_price ({}) VALUES ({})"
-    final_str = begin_str.format(column_str, insert_str)
-    
-    # print('\n\t',final_str,'\n')
+        # create the insert strings
+        column_str = """data_vendor_id, symbol_id, price_date, created_date,
+                        last_updated_date, open_price, high_price, low_price,
+                        close_price, volume, adj_close_price"""
+        
+        insert_str = ("%s, " * 11)[:-2]
+        begin_str = "INSERT INTO daily_price ({}) VALUES ({})"
+        final_str = begin_str.format(column_str, insert_str)
+        
+        # print('\n\t',final_str,'\n')
 
-    # Using a MyQL connection, execute the INSERT statement for every symbol
-    con = mdb.connect(host=db_host, user=db_user, passwd=db_pass, db=db_name)
-    with con:
+        # Using a MyQL connection, execute the INSERT statement for every symbol
+        con = mdb.connect(host=db_host, user=db_user, passwd=db_pass, db=db_name)
         cur = con.cursor()
-        cur.executemany(final_str, daily_data)
+        cur.executemany(final_str, row_data)
+        con.close()
+
+    except Exception as f:
+        print(f"Could not make data rows for ticker {symbol_id}")
+        pass
 
 
+
+# [][][][][][][][][][]
+# Main Area
+# [][][][][][][][][][]
+
+if __name__ == "__main__":
+    # Loop over tickers and insert the daily historical data into the db
+    tickers = obtain_list_of_db_tickers()
+    # Manually creating a list of tickers to ignore
+    skip_tickers = ["APC","BHGE","DWDP","HRS","HCP","LLL"]
+
+
+    tickers = [tkpair for tkpair in tickers if tkpair[1] not in skip_tickers]
+    
+    lentickers = len(tickers)
+    prnstr_1 = "Adding data for {}: {} out of {}"
+    prnstr_2 = "Successfully added Yahoo!Finance pricing data to DB."
+    for i, t in enumerate(tickers):
+        print(prnstr_1.format(t[1], i+1, lentickers))
+
+        # with no other arugment, we pull from the year 2000, forward.
+        yf_data = get_daily_historic_data_yahoo(t[1])
+        # Pause, so we don't hit the end point too quickly
+        time.sleep(0.05)
+        # Yahoo!Finance is consdered vendor 1
+        insert_daily_data_into_db('1', t[0], yf_data)
+
+    print(prnstr_2)
 
 # `-=`-=`-=`-=`-=`-=`-=`-=`-=`-=`-=
+# Test Area
 # `-=`-=`-=`-=`-=`-=`-=`-=`-=`-=`-=
 
 def run_tests(fr=1,to=None):
