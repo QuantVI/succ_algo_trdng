@@ -55,16 +55,21 @@ db_host = 'localhost'
 db_user = 'sec_user'
 db_pass = 'password'
 db_name = 'securities_master'
-con = mdb.connect(host=db_host,
-                  user=db_user,
-                  passwd=db_pass,
-                  db=db_name)
+# Moving global connection. will conect as needed per function.
+#con = mdb.connect(host=db_host,
+#                  user=db_user,
+#                  passwd=db_pass,
+#                  db=db_name)
 
 def obtain_list_of_db_tickers():
     """ Obtain a list of the ticker symbols in the database."""
+    # start individual connection
+    con = mdb.connect(host=db_host, user=db_user, passwd=db_pass, db=db_name)
+    # use connection
     cur = con.cursor()
     cur.execute("SELECT id, ticker FROM symbol")
     data = cur.fetchall()
+    # close connection
     con.close()
     # return a list of tuples of id and ticker
     return [(d[0], d[1]) for d in data]
@@ -94,6 +99,7 @@ def get_daily_historic_data_yahoo( \
         # pandas dataframe of the historical data
 
         yf_data = web.DataReader(clean_ticker,"yahoo",start_date,end_date)
+        time.sleep(0.1)
         
         return yf_data
     
@@ -112,15 +118,39 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
 
     # Create the time now
     now = datetime.datetime.now()
-
     # Amend the data to include the vendor ID and symbol ID
-    # use df['new_col'] = 'repeat string in every row'
-    # to add new columns with those ids
-    daily_data = [
-        (data_vendor_id, symbol_id, d[0], now, now,
-         d[1], d[2], d[3], d[4], d[5], d[6])
-        for d in daily_data
-        ]
+    # Generates a tuple of length 2:
+        # 0: TimeStamp : <class 'pandas._libs.tslibs.timestamps.Timestamp'>
+        # 1: Series with our 6 columns : <class 'pandas.core.series.Series'>
+            # Series indexable by int
+            # Series indexable by name
+    EXAMPLE_A = """
+        >>> sdl[0][0]
+        Timestamp('2020-01-02 00:00:00')
+        >>> sdl[0][1]
+        High         1.898010e+03
+        Low          1.864150e+03
+        Open         1.875000e+03
+        Close        1.898010e+03
+        Volume       4.029000e+06
+        Adj Close    1.898010e+03
+        Name: 2020-01-02 00:00:00, dtype: float64
+        >>> sdl[0][1][0]
+        1898.010009765625
+        >>> sdl[0][1]["High"]
+        1898.010009765625
+        """
+    df_to_rows = [row for row in daily_data.iterrows()]
+
+    # creaing the row-by-row data
+    # prefer to reference by item name, than by index
+    row_data = [(data_vendor_id, symbol_id, dfr[0],
+                        now, now, # created and last updated dates
+                        dfr[1]["Open"], dfr[1]["High"],
+                        dfr[1]["Low"], dfr[1]["Close"],
+                        dfr[1]["Volume"], dfr[1][5] # adj close has a space
+                        ) for dfr in df_to_rows
+                       ]
 
     # create the insert strings
     column_str = """data_vendor_id, symbol_id, price_date, created_date,
@@ -128,9 +158,16 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
                     close_price, volume, adj_close_price"""
     
     insert_str = ("%s, " * 11)[:-2]
-    begin_str = "INSERT INTO daily_pruce (%s) VALUE (%s)"
+    begin_str = "INSERT INTO daily_price ({}) VALUES ({})"
     final_str = begin_str.format(column_str, insert_str)
-    print(final_str)
+    
+    # print('\n\t',final_str,'\n')
+
+    # Using a MyQL connection, execute the INSERT statement for every symbol
+    con = mdb.connect(host=db_host, user=db_user, passwd=db_pass, db=db_name)
+    with con:
+        cur = con.cursor()
+        cur.executemany(final_str, daily_data)
 
 
 
@@ -153,5 +190,24 @@ def run_tests(fr=1,to=None):
         print(some_data.head())
 
     all_tests.append(test_1)
+
+    def test_2():
+        """returns something if print(final_str) uncommented in
+        insert_daily_data_into_db()
+        """
+        all_tickers = obtain_list_of_db_tickers()
+        amzn_tckr = all_tickers[28][1]
+        s2020 = datetime.datetime(2020,1,1)
+        some_data = get_daily_historic_data_yahoo(amzn_tckr, start_date=s2020)
+        rez = insert_daily_data_into_db(9999, 'TEST02', some_data)
+        return {'t':all_tickers,
+                'dt':s2020,
+                'sdata':some_data,
+                'test_rez':rez}
+    all_tests.append(test_2)
+        
+    
     if to is None:
-        for t in all_tests: t()
+        for t in all_tests: return t()
+    else:
+        return all_tests[fr-1]()
