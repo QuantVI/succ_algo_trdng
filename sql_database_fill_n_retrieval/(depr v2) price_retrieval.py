@@ -9,7 +9,7 @@ import warnings
 import mysql.connector as mdb
 import requests
 
-import pandas_datareader.data as web
+#import pandas_datareader.data as web
 import time
 import calendar
 
@@ -42,10 +42,6 @@ and download the data.
 
 using _test_price_retrieval.py, verified obtain_list_of_db_tickers() works.
 
-2020-02-06
-Randomly tried reinstalling pandas.datareader from pip, and it worked.
-The elongated workaround of using an API from a different vendor may not
-be needed now. Reverting the code to use datareader.
 
 """
 
@@ -81,7 +77,40 @@ def get_daily_historic_data_yahoo( \
     ticker: Yahoo Finance ticker symbol, e.g. "GOOG" for Google, Inc.
     start_date: Start date in (YYYY, M, D, H, m, s, ms)
     end_date: End date in (YYYY, M, D, H, m, s, ms)
+
+    ~~~ A note on dthe date ~~~
+    1. When we create datetime.datetime(2019,1,1) we get:
+        datetime.datetime(2019,1,1,0,0)
+    2. We must then get the timetuple() of this which is:
+        s2019.timeetuple() #where s2019 is as in #1
+        -> time.struct_time(tm_year= 2019, tm_mon=1, tm_day=1, tm_houtr=0,
+                    tm_min=0, tm_sec=0, tm_wday=1, tm_yday=1, tm_isdst=-1)
+    3. We can now call timegm() on this time tuple
+        calendar.timegm(s2019.timetuple())
+        -> 1546300800
+    4. This POSIX-like time goes into the Yahoo!Finance URL.
+        It represents the start of that day.
+        Thus our enddate would not include that business day, since
+        the POSIX would be the start of that day.
+
+    ~~ Crumb and Cookie ~~~
+    We also need a valid cookie for our session. This person
+    https://stackoverflow.com/q/56698011/1327325
+    encountered a similar problem. We can use the code to apply the cookie to
+    the request.
     """
+
+    # turn date into date tuple
+    dt_tuples = (start_date.timetuple(), end_date.timetuple())
+
+    # turn date tuple into POSIX time
+    dt_rng = (calendar.timegm(dt_tuples[0]),
+                  calendar.timegm(dt_tuples[1]) )
+
+    # attempt to get valid cookie
+        # we might want to return the cookie also.
+    def get_a_valid_cookie(standard_url=1):
+        pass
 
     # try connecting to Yahoo! Finance and obtaining the data.
     # On failure, print an error message.
@@ -90,17 +119,24 @@ def get_daily_historic_data_yahoo( \
         # change things like BRK.B to BRK-B
         clean_ticker = ticker.replace("_","-")
         clean_ticker = clean_ticker.replace(".","-")
+
+        # URL Creation
+        u1 = f"https://query1.finance.yahoo.com/v7/finance/download/"
+        u2 = f"{ticker}?period1={dt_rng[0]}&period2={dt_rng[1]}"
+        u3 = f"&interval=1d&events=history&crumb=tdXtB.G0KQQ"
+        uF = f"{u1}{u2}{u3}"
+        print(uF)
         
         # pandas dataframe of the historical data
 
-        yf_data = web.DataReader(clean_ticker,"yahoo",start_date,end_date)
+        resp = requests.get(uF)
+
         
-        return yf_data
+        #return yf_data
+        return resp
     
     except Exception as e:
         print("Could not download Yahoo data: \n\t%s" %e)
-
-    # the returned dataframe will have its values taken and put into MySQL.
 
 def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
     """
@@ -116,42 +152,17 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
     # Amend the data to include the vendor ID and symbol ID
     # use df['new_col'] = 'repeat string in every row'
     # to add new columns with those ids
-    daily_data = [
-        (data_vendor_id, symbol_id, d[0], now, now,
-         d[1], d[2], d[3], d[4], d[5], d[6])
-        for d in daily_data
-        ]
-
-    # create the insert strings
-    column_str = """data_vendor_id, symbol_id, price_date, created_date,
-                    last_updated_date, open_price, high_price, low_price,
-                    close_price, volume, adj_close_price"""
-    
-    insert_str = ("%s, " * 11)[:-2]
-    begin_str = "INSERT INTO daily_pruce (%s) VALUE (%s)"
-    final_str = begin_str.format(column_str, insert_str)
-    print(final_str)
-
 
 
 # `-=`-=`-=`-=`-=`-=`-=`-=`-=`-=`-=
-# `-=`-=`-=`-=`-=`-=`-=`-=`-=`-=`-=
+all_tickers = obtain_list_of_db_tickers()
 
-def run_tests(fr=1,to=None):
-    all_tests=[]
-    def test_1():
-        all_tickers = obtain_list_of_db_tickers()
-        print(all_tickers[20:40],'\n')
-        
-        amzn_tckr = all_tickers[28][1]
-        print(amzn_tckr,'\n')
-        
-        s2019 = datetime.datetime(2020,1,1)
-        
-        some_data = get_daily_historic_data_yahoo(amzn_tckr, start_date=s2019)
+print(all_tickers[20:40],'\n')
 
-        print(some_data.head())
+amzn_tckr = all_tickers[28][1]
 
-    all_tests.append(test_1)
-    if to is None:
-        for t in all_tests: t()
+print(amzn_tckr,'\n')
+
+s2019 = datetime.datetime(2019,1,1)
+
+some_data = get_daily_historic_data_yahoo(amzn_tckr, start_date=s2019)

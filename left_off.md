@@ -68,3 +68,27 @@ Working with price_retrieval.py
 1. Yahoo!Finance is a no-go. We will switch to a full API version instead of trying to web-scrape, as this method has become highly protected.
 
 1. After a random retry, I was able to get pandas datareader installed. It's been broken and I haven't been able to reinstall it for a while. Now we are back to the 2nd method for data ingestion.
+
+1. historical data retrievel is working, Moving to code the storage of data in the MySQL db.
+
+2020-02-06
+
+1. Have moved to the daily quotes storage pieces. In the original, the fetched data was more or less in text format. After using .split() its indexable. We however, have fetched directly into a DataFrame, and must retrieve the right quantitiy of each row differently.
+
+1. .
+
+1. .
+
+1. .
+
+1. .
+
+1. .
+
+1. .
+
+1. .
+
+1. .
+
+1. .
