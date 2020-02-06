@@ -53,3 +53,18 @@ This worked previously. However, we wil have to revert the the books verions, or
 `_test_price_retrieval.py` can be ignored.
 
 In the original price_retrieval.py, you could get Yahoo!Finance data from [ichart.finance.yahoo.com](). This is no longer the case. The new type of URL uses Unix timestamps.
+
+2020-02-05
+Working with price_retrieval.py
+
+1. We will have to hit a normal URL, sush as this one for the [S&P 500 (^GSPC)](https://finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC).
+
+1. However, I've noticed that the "crumb", an identifier/token is the same for both the S&P500 and for the Russell 2000. Moreover, I'm seeing the same crumb as I did on 2019-12-13. This might mean that the crumb is dtermine via unique IP/device. If so, I should be able to append the crumb to each URL and download the data.
+
+1. Thankfully, it looks like the 500 constituent stocks have normal ticker representations in general and on Yahoo!Finance. This means that while the S&P500 is ^GSPC as a ticker, and %5GSPC in a URL, we won't need these types of conversions for the stocks.
+
+1. Additional problem of needing a valid cookie. Found a possible solution on [here](https://stackoverflow.com/q/56698011/1327325).
+
+1. Yahoo!Finance is a no-go. We will switch to a full API version instead of trying to web-scrape, as this method has become highly protected.
+
+1. After a random retry, I was able to get pandas datareader installed. It's been broken and I haven't been able to reinstall it for a while. Now we are back to the 2nd method for data ingestion.
