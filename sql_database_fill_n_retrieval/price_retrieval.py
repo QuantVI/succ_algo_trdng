@@ -47,6 +47,12 @@ Randomly tried reinstalling pandas.datareader from pip, and it worked.
 The elongated workaround of using an API from a different vendor may not
 be needed now. Reverting the code to use datareader.
 
+Try Except was added to the db writer as well. Since the Yahoo pull may return
+no data for a symbol, the db write can't attempt to make rwos from NULL data.
+
+Moreover, both of the Try Except, print the error, and use `pass` to move on.
+I've taken not of bad symbols, and remove them in subsequent runs, by adding
+them to an ignore list which excludes them via filtering all tickers.
 """
 
 
@@ -99,7 +105,7 @@ def get_daily_historic_data_yahoo( \
         # pandas dataframe of the historical data
 
         yf_data = web.DataReader(clean_ticker,"yahoo",start_date,end_date)
-        time.sleep(0.1)
+        time.sleep(0.05)
         
         return yf_data
     
@@ -160,7 +166,7 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
                         close_price, volume, adj_close_price"""
         
         insert_str = ("%s, " * 11)[:-2]
-        begin_str = "INSERT INTO daily_price ({}) VALUES ({})"
+        begin_str = "INSERT INTO securities_master.daily_price ({}) VALUES ({})"
         final_str = begin_str.format(column_str, insert_str)
         
         # print('\n\t',final_str,'\n')
@@ -169,6 +175,9 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
         con = mdb.connect(host=db_host, user=db_user, passwd=db_pass, db=db_name)
         cur = con.cursor()
         cur.executemany(final_str, row_data)
+        # quite necessary
+        con.commit()
+        cur.close()
         con.close()
 
     except Exception as f:
@@ -185,7 +194,9 @@ if __name__ == "__main__":
     # Loop over tickers and insert the daily historical data into the db
     tickers = obtain_list_of_db_tickers()
     # Manually creating a list of tickers to ignore
-    skip_tickers = ["APC","BHGE","DWDP","HRS","HCP","LLL"]
+    skip_tickers = ["APC","BHGE","DWDP","HRS","HCP","LLL","NFX","RHT",
+                    "SYMC","TMK","TSS"]
+    # NFX seemded to be a date error. Probably didn't exist as early as 2000.
 
 
     tickers = [tkpair for tkpair in tickers if tkpair[1] not in skip_tickers]
