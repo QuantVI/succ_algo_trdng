@@ -87,3 +87,5 @@ Working with price_retrieval.py
 1. While 11 tickers have been left out, data was succesfully downloaded from Yahoo Finance and saved intot he MySQL db. A total of 2,267,811 rows of data for 494 companies dating from 2000-01-01 until 2020-02-06. This means `price_retrieval.py` is complete and successful.
 
 1. Next. From Chp 8 on. Decide whether or not to make Quandl data pull. Skip IQFeed section, and continuous futures.
+
+1. continued 2020-06-20
