@@ -196,16 +196,16 @@ if __name__ == "__main__":
     # Manually creating a list of tickers to ignore
     skip_tickers = ["APC","BHGE","DWDP","HRS","HCP","LLL","NFX","RHT",
                     "SYMC","TMK","TSS"]
-    # NFX seemded to be a date error. Probably didn't exist as early as 2000.
+    # NFX seemed to be a date error. Probably didn't exist as early as 2000.
 
 
     tickers = [tkpair for tkpair in tickers if tkpair[1] not in skip_tickers]
     
     lentickers = len(tickers)
-    prnstr_1 = "Adding data for {}: {} out of {}"
-    prnstr_2 = "Successfully added Yahoo!Finance pricing data to DB."
+    prntstr_1 = "Adding data for {}: {} out of {}"
+    prntstr_2 = "Successfully added Yahoo!Finance pricing data to DB."
     for i, t in enumerate(tickers):
-        print(prnstr_1.format(t[1], i+1, lentickers))
+        print(prntstr_1.format(t[1], i+1, lentickers))
 
         # with no other arugment, we pull from the year 2000, forward.
         yf_data = get_daily_historic_data_yahoo(t[1])
@@ -214,7 +214,7 @@ if __name__ == "__main__":
         # Yahoo!Finance is consdered vendor 1
         insert_daily_data_into_db('1', t[0], yf_data)
 
-    print(prnstr_2)
+    print(prntstr_2)
 
 # `-=`-=`-=`-=`-=`-=`-=`-=`-=`-=`-=
 # Test Area
