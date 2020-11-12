@@ -27,8 +27,8 @@ Using the calendar module, we can convert a time tuple into a POSIX timestamp.
 One problem is that it appears the URL contains a time-sensitive cookie,
     such as: crumb=tdXtB.G0KQQ
 Thus crumb has to be obtained at some point, and used for subsequent downloads.
-It's unknow how long the crumb is good for. However, some manual exploration in downloading quotes
-confirmed that even if you open a new tab/window and go fina a different ticker to download
+It's unknown how long the crumb is good for. However, some manual exploration in downloading quotes
+confirmed that even if you open a new tab/window and go find a different ticker to download
 the crumb is the same. Can we capture this part of the url by using the requests module?
 """
 
@@ -48,7 +48,7 @@ The elongated workaround of using an API from a different vendor may not
 be needed now. Reverting the code to use datareader.
 
 Try Except was added to the db writer as well. Since the Yahoo pull may return
-no data for a symbol, the db write can't attempt to make rwos from NULL data.
+no data for a symbol, the db write can't attempt to make rows from NULL data.
 
 Moreover, both of the Try Except, print the error, and use `pass` to move on.
 I've taken not of bad symbols, and remove them in subsequent runs, by adding
@@ -61,7 +61,7 @@ db_host = 'localhost'
 db_user = 'sec_user'
 db_pass = 'password'
 db_name = 'securities_master'
-# Moving global connection. will conect as needed per function.
+# Moving global connection. will connect as needed per function.
 #con = mdb.connect(host=db_host,
 #                  user=db_user,
 #                  passwd=db_pass,
@@ -150,7 +150,7 @@ def insert_daily_data_into_db(data_vendor_id, symbol_id, daily_data):
     try:
         df_to_rows = [row for row in daily_data.iterrows()]
 
-        # creaing the row-by-row data
+        # creating the row-by-row data
         # prefer to reference by item name, than by index
         row_data = [(data_vendor_id, symbol_id, dfr[0],
                             now, now, # created and last updated dates
@@ -207,11 +207,11 @@ if __name__ == "__main__":
     for i, t in enumerate(tickers):
         print(prntstr_1.format(t[1], i+1, lentickers))
 
-        # with no other arugment, we pull from the year 2000, forward.
+        # with no other argument, we pull from the year 2000, forward.
         yf_data = get_daily_historic_data_yahoo(t[1])
         # Pause, so we don't hit the end point too quickly
         time.sleep(0.05)
-        # Yahoo!Finance is consdered vendor 1
+        # Yahoo!Finance is considered vendor 1
         insert_daily_data_into_db('1', t[0], yf_data)
 
     print(prntstr_2)
