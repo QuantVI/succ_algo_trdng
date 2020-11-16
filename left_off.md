@@ -69,23 +69,25 @@ Working with price_retrieval.py
 
 1. After a random retry, I was able to get pandas datareader installed. It's been broken and I haven't been able to reinstall it for a while. Now we are back to the 2nd method for data ingestion.
 
-1. historical data retrievel is working, Moving to code the storage of data in the MySQL db.
+1. historical data retrieval is working, Moving to code the storage of data in the MySQL db.
 
 2020-02-06
 
 1. Have moved to the daily quotes storage pieces. In the original, the fetched data was more or less in text format. After using .split() its indexable. We however, have fetched directly into a DataFrame, and must retrieve the right quantitiy of each row differently.
+2. Some tiker symbols will either not be in the Yahoo Finance data, or given an error when being retrieved. We will manually ignore these tickers. 
+  3. Since the `executemany()` statement is used to insert data into the database, if even one symbol is missing data, then nothing is commited to the db.
+  4. This is okay, since we'd otherwise have duplicate data if we start the process over again. However, it does have other problems. A more robust solution would check the db for data for the current time(span) for a symbol, and also remove irretrievable symbols from the current list of symbols we need to download data for.
+  5. Then the process could retry until successful, as we would either remove all symbol for mthe list as unobtainable, see that the db already has todays (span of) data, or get and insert everything.
+6. Changed two method to print the bad ticker and continue. Needing to restart the process 280+ tickers in is crazy.
+7. Have to redo the entire pull becuase I need ot use `commit()` to flush full transaction to the db. Closing the connection is not enough.
+8. While 11 tickers have been left out, data was succesfully downloaded from Yahoo Finance and saved intot he MySQL db. A total of 2,267,811 rows of data for 494 companies dating from 2000-01-01 until 2020-02-06. This means `price_retrieval.py` is complete and successful.
+9. Next. From Chp 8 on. Decide whether or not to make Quandl data pull. Skip IQFeed section, and continuous futures.
+10. continued 2020-06-20
 
-1. Some tiker symbols will either not be in the Yahoo Finance data, or given an error when being retrieved. We will manually ignore these tickers. 
-  2. Since the `executemany()` statement is used to insert data into the database, if even one symbol is missing data, then nothing is commited to the db.
-  3. This is okay, since we'd otherwise have duplicate data if we start the process over again. However, it does have other problems. A more robust solution would check th db for data for the current time(span) for a symbol, and also remove unretrievable symbols from the current list of symbols we need to download data for.
-  4. Then the process could retry until successful, as we would either remove all symbol for mthe list as unobtainable, see that the db already has todays (span of) data, or get and insert everything.
 
-1. Changed two method to print the bad ticker and continue. Needing to restart the process 280+ tickers in is crazy.
 
-1. Have to redo the entire pull becuase I need ot use `commit()` to flush full transaction to the db. Closing the connection is not enough.
+2020-11-16
 
-1. While 11 tickers have been left out, data was succesfully downloaded from Yahoo Finance and saved intot he MySQL db. A total of 2,267,811 rows of data for 494 companies dating from 2000-01-01 until 2020-02-06. This means `price_retrieval.py` is complete and successful.
+- Need to write `retrieving_data.py`
+  - this will also go into the sql_db ...folder
 
-1. Next. From Chp 8 on. Decide whether or not to make Quandl data pull. Skip IQFeed section, and continuous futures.
-
-1. continued 2020-06-20
