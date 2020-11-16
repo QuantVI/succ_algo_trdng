@@ -24,5 +24,3 @@ if __name__ = "__main__":
 
     # Output the dataframe tail
     print(goog.tail())
-
-
