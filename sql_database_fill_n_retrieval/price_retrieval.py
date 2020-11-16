@@ -55,18 +55,10 @@ I've taken not of bad symbols, and remove them in subsequent runs, by adding
 them to an ignore list which excludes them via filtering all tickers.
 """
 
-
-# Connect to the MySQL instance
-# db_host = 'localhost'
-# db_user = 'sec_user'
-# db_pass = 'password'
-# db_name = 'securities_master'
-
 # 2020-11-16
 # moved db info to another file
-import db_connection_info
-import sys
 
+# Connect to the MySQL instance
 db_host = db_connection_info.db_host
 db_user = db_connection_info.db_user
 db_pass = db_connection_info.db_pass
