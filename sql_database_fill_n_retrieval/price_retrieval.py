@@ -57,10 +57,21 @@ them to an ignore list which excludes them via filtering all tickers.
 
 
 # Connect to the MySQL instance
-db_host = 'localhost'
-db_user = 'sec_user'
-db_pass = 'password'
-db_name = 'securities_master'
+# db_host = 'localhost'
+# db_user = 'sec_user'
+# db_pass = 'password'
+# db_name = 'securities_master'
+
+# 2020-11-16
+# moved db info to another file
+import db_connection_info
+import sys
+
+db_host = db_connection_info.db_host
+db_user = db_connection_info.db_user
+db_pass = db_connection_info.db_pass
+db_name = db_connection_info.db_name
+
 # Moving global connection. will connect as needed per function.
 #con = mdb.connect(host=db_host,
 #                  user=db_user,
