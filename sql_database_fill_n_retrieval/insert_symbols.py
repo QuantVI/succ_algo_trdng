@@ -53,12 +53,14 @@ def insert_snp500_symbols(symbols):
     Insert the S&P500 symbols into the MySQL database.
     """
     # Connect to the MySQL database
-    db_host = 'localhost'
-    db_user = 'sec_user'
-    db_pass = 'password'
-    db_name = 'securities_master'
+    import db_connection_info as dbci
+    #db_host = 'localhost'
+    #db_user = 'sec_user'
+    #db_pass = 'password'
+    #db_name = 'securities_master'
     con = mdb.connect(
-        host=db_host, user=db_user, passwd=db_pass, db=db_name
+        host=dbci.db_host, user=dbci.db_user,
+        passwd=dbci.db_pass, db=dbci.db_name
         )
 
     # Create the insert strings

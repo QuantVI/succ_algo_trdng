@@ -1,3 +1,5 @@
+use securities_master;
+
 create table `daily_price` (
 	`id` int NOT null Auto_Increment,
     `data_vendor_id` int NOT null,

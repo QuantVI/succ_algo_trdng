@@ -1,3 +1,5 @@
+use securities_master;
+
 create table `data_vendor` (
 	`id` int NOT null Auto_Increment,
     `name` varchar(64) Not null,

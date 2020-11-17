@@ -90,4 +90,23 @@ Working with price_retrieval.py
 
 - Need to write `retrieving_data.py`
   - this will also go into the sql_db ...folder
+  - completed
+- Also created the db and tables in the Windows system
+- Got symbols
+- Added S&P 500 constituent data (yr 2000+)  into the database. Of 505, Missing:
+  - Could not make data rows for ticker 315
+  - Could not make data rows for ticker 322
+  - Could not make data rows for ticker 325
+  - Could not make data rows for ticker 326
+  - Could not make data rows for ticker 338
+  - Could not make data rows for ticker 340
+  - [315,322,325,326,338,340]
+  - (315, 'MGM')
+    (322, 'MDLZ')
+    (325, 'MS')
+    (326, 'MOS')
+    (338, 'NEE')
+    (340, 'NKE')
+  - not a big deal
+- 
 

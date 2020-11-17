@@ -57,6 +57,7 @@ them to an ignore list which excludes them via filtering all tickers.
 
 # 2020-11-16
 # moved db info to another file
+import db_connection_info
 
 # Connect to the MySQL instance
 db_host = db_connection_info.db_host

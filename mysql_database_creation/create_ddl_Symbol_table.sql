@@ -1,3 +1,5 @@
+use securities_master;
+
 create table `symbol` (
 	`id` int not NULL AUTO_INCREMENT,
     `exchange_id` int NULL,
