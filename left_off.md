@@ -108,5 +108,5 @@ Working with price_retrieval.py
     (338, 'NEE')
     (340, 'NKE')
   - not a big deal
-- 
+- Start in 8.2 (pg 63)
 
