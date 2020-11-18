@@ -110,3 +110,9 @@ Working with price_retrieval.py
   - not a big deal
 - Start in 8.2 (pg 63)
 
+2020-11-17
+
+- quandl data on futures is now premium. skip
+- skip DTN IQFeed
+- go to Ch.9 --> re-read, with notes
+- 
