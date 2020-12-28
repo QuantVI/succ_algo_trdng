@@ -116,4 +116,33 @@ Working with price_retrieval.py
 - skip DTN IQFeed
 - go to Ch.9 --> re-read, with notes
 - tested `retrieving_data.py` - working
-- 
+
+202-12-28
+
+- Chapter 10 - Time Series Analysis
+  - 10.1 Testing for Mean Reversion; with example standalone code
+  - 10.2 Testing for Stationarity; with standalone code for Hurst exponent
+  - 10.3 Cointegration; with cointegrated Augmented Dickey-Fuller Test code **[cadf.py]**
+  - 10.4 Why Statistical Testing?
+- Chapter 11 - Forecasting
+  - 11.1 Measuring Forecasting Accuracy; Hit Rate and Confusion Matrix
+  - 11.2 Factor Choice; Lagged Price Factors and Volume, External Factors
+  - 11.3 Classification Models
+    - Logistic Regression
+    - Discriminant Analysis
+    - Support Vector Machines
+    - Decision Trees and Random Forests
+    - Principal Components Analysis
+    - Which Forecaster?
+  - 11.4 Forecasting Stock Index Movement
+    - Python Implementations: **[forecast.py]**
+
+Part V
+
+- Chapter 12 - Performance Measurement
+  - 12.1 Trade Analysis
+    - Total & Average Period - PnL, Max/Min Period Profit/Loss, Average Period Profit/Loss
+    - Winning/Losing Periods, Percentage Win/Loss Periods
+  - 12.2 Strategy and Portfolio Analysis; Returns, Risk/Reward, and Drawdown - Analysis
+    - __[sharpe.py]__
+- Chapter 13 - Risk and Money Management
