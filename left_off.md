@@ -146,3 +146,23 @@ Part V
   - 12.2 Strategy and Portfolio Analysis; Returns, Risk/Reward, and Drawdown - Analysis
     - __[sharpe.py]__
 - Chapter 13 - Risk and Money Management
+  - 13.1 Sources of Risk: Strategy, Portfolio, Counterparty, Operational - Risk
+  - 13.2 Money Management
+  - 13.3 Risk Management
+  - 13.4 Advantages and Disadvantages
+    - Methods of Calculation, Variance-Covariance Method
+    - __[var.py]__ for Value-at-Risk
+
+Part VI - Automated Trading
+
+- Chapter 14 - Event-Driven Trading Engine Implementation
+  - 14.1 Event-Driven Software
+  - 14.2 Compound Objects
+    - Event, Event Queue, DataHandler, Strategy, Portfolio, ExecutionHandler, Backtest
+    - start of __[event.py]__ for all event types
+    - __[data.py]__ the data-handler
+    - __[strategy.py]__ for calculation on market data
+    - __[performance.py]__
+    - __[portfolio.py]__ - bulk of the code is here
+    - __[execution.py]__
+
