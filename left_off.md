@@ -117,7 +117,7 @@ Working with price_retrieval.py
 - go to Ch.9 --> re-read, with notes
 - tested `retrieving_data.py` - working
 
-202-12-28
+2020-12-28
 
 - Chapter 10 - Time Series Analysis
   - 10.1 Testing for Mean Reversion; with example standalone code
@@ -165,4 +165,12 @@ Part VI - Automated Trading
     - __[performance.py]__
     - __[portfolio.py]__ - bulk of the code is here
     - __[execution.py]__
+
+2020-12-31
+
+- Planning to skip __cadf.py__  (Ch 10) as it doesn't seem to be linked overall
+- Next would be to write __forecast.py__
+  - Figure out if this is part of a large structure, such as to have a folder for it
+  - Review Chapter 11 where the code comes from.
+  - Notes in the code about the math involved will be helpful
 
