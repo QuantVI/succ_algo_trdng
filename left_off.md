@@ -174,3 +174,7 @@ Part VI - Automated Trading
   - Review Chapter 11 where the code comes from.
   - Notes in the code about the math involved will be helpful
 
+2020-01-04
+
+Still reviewing Chapter 11. Ready to start 11.4 - implementation of __forecast.py__
+
