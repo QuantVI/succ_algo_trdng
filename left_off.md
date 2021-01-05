@@ -178,3 +178,6 @@ Part VI - Automated Trading
 
 Still reviewing Chapter 11. Ready to start 11.4 - implementation of __forecast.py__
 
+2020-01-05
+
+Started on __forecast.py__. No _compile_ errors.
