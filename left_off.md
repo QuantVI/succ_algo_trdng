@@ -181,3 +181,6 @@ Still reviewing Chapter 11. Ready to start 11.4 - implementation of __forecast.p
 2020-01-05
 
 Started on __forecast.py__. No _compile_ errors.
+
+Continuing with __forecast.py__
+
