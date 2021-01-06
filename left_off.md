@@ -174,13 +174,20 @@ Part VI - Automated Trading
   - Review Chapter 11 where the code comes from.
   - Notes in the code about the math involved will be helpful
 
-2020-01-04
+2021-01-04
 
 Still reviewing Chapter 11. Ready to start 11.4 - implementation of __forecast.py__
 
-2020-01-05
+
+
+2021-01-05
 
 Started on __forecast.py__. No _compile_ errors.
 
 Continuing with __forecast.py__
 
+
+
+2021-01-06
+
+__forecast.py__ is working. Output is nearly the same. Radial SVM is supposed to differ a bit.
