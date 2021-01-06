@@ -11,9 +11,9 @@ import sklearn
 import pandas_datareader.data as web
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 from sklearn.metrics import confusion_matrix
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
 from sklearn.svm import LinearSVC, SVC
 
 
@@ -27,12 +27,14 @@ def create_lagged_series(symbol, start_date, end_date, lags=5):
     """
 
     # Obtain stock information from Yahoo Finance
-    ts = DataReader(symbol, "yahoo", start_date - datetime.timedelta(days=365),
+    ts = web.DataReader(symbol,
+                    "yahoo",
+                    start_date - datetime.timedelta(days=365),
                     end_date)
 
     # Create the new lagged DataFrame
     tslag = pd.DataFrame(index=ts.index)
-    tslaf["Today"] = ts["Adj Close"]
+    tslag["Today"] = ts["Adj Close"]
     tslag["Volume"] = ts["Volume"]
 
     # Create the shifted series of prior trading period close values
@@ -73,7 +75,48 @@ if __name__ == "__main__":
     X = snpret[["Lag1", "Lag2"]]
     y = snpret["Direction"]
 
-    
+    # The test data is split into two parts: Before and after 2005 Jan 1st
+    start_test = datetime.datetime(2005,1,1)
+
+    # Create training and test sets
+    X_train = X[X.index < start_test]
+    X_test = X[X.index >= start_test]
+    y_train = y[y.index < start_test]
+    y_test = y[y.index >= start_test]
+
+    # Create the (parametrized) models
+    print("Hit Rates/Confusion Matrixes:\n")
+    models = [("LR", LogisticRegression()),
+              ("LDA", LDA()),
+              ("QDA", QDA()),
+              ("LSVC", LinearSVC()),
+              ("RSVM", SVC(
+                  C=1000000, cache_size=200, class_weight=None,
+                  coef0=0.0, degree=3, gamma=0.0001, kernel='rbf',
+                  max_iter=-1, probability=False, random_state=None,
+                  shrinking=True, tol=0.001, verbose=False)
+               ),
+              ("RF", RandomForestClassifier(
+                  n_estimators=1000, criterion='gini',
+                  max_depth=None, min_samples_split=2,
+                  min_samples_leaf=1, max_features='auto',
+                  bootstrap=True, oob_score=False, n_jobs=1,
+                  random_state=None, verbose=0)
+               )]
+
+    # Iterate through the models
+    for m in models:
+
+        # Train each of the models on the training set
+        m[1].fit(X_train, y_train)
+
+        # Make an array of predictions on the test set
+        pred = m[1].predict(X_test)
+
+        # Output the hit-rate and the confusion matrix for each model
+        print("%s:\n%0.3f" % (m[0], m[1].score(X_test, y_test)))
+        print("%s\n" % confusion_matrix(pred, y_test))
+        
 
 
 
