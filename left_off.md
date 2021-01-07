@@ -191,3 +191,5 @@ Continuing with __forecast.py__
 2021-01-06
 
 __forecast.py__ is working. Output is nearly the same. Radial SVM is supposed to differ a bit.
+
+Now moving to __Part V__
