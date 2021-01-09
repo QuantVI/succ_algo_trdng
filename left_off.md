@@ -220,6 +220,49 @@ Performance should be measured at multiple levels of granularity.
   - Trade Analysis - performance at the individual trade level, versus strategy and portfolio measures above
     - Number of winning/loosing trades, mean profit per trade, win/loss ratio
 
+Beginning __sharpe.py__
+
+Note
+
+> from pandas.io.data import DataReader 
+>
+> ##### used as
+>
+> ts = DataReader( symbol, "yahoo", start_date-datetime.timedelta( days = 365 ), end_date ) 
+
+or
+
+> import pandas.io.data as web 
+>
+> ##### used as
+>
+> arex = web.DataReader("AREX", "yahoo", start, end) 
+
+should be
+
+> import pandas_datareader.data as web
+>
+> ##### used as
+>
+> ts = web.DataReader( symbol, "yahoo", start_date - datetime.timedelta( days = 365 ), end_date )
+
+
+
+The Google Finance api for DataReader doesn't work. Switching to Yahoo!
+
+- switching to source of Yahoo! worked.
+- `equity_sharpe('GOOG')` returns `0.7023895327537455`
+
+-  `market_neutral_sharpe('GOOG', 'SPY')` returns `0.8283145638608274`
+
+
+
+#### Chapter 13 Risk and Money Management
+
+Intrinsic sources of risk and Extrinsic sources of risk
+
+Strategy Risk, Portfolio Risk, Market Risk, Counterparty Risk, Operational Risk
+
 
 
 
