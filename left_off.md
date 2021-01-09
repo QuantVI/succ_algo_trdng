@@ -263,7 +263,9 @@ Intrinsic sources of risk and Extrinsic sources of risk
 
 Strategy Risk, Portfolio Risk, Market Risk, Counterparty Risk, Operational Risk
 
+Can review Chapter 13 later.
 
+__var.py__ starts in 13.4
 
-
+- Beginning __var.py__
 
