@@ -268,4 +268,11 @@ Can review Chapter 13 later.
 __var.py__ starts in 13.4
 
 - Beginning __var.py__
+- `var = var_cov_var(P, c, mu, sigma)` with P = 1e6, c = 0.99, etc returns `Value-at-Risk: $56503.11`
+
+- This end Chapter 13 and Part V
+
+
+
+
 
