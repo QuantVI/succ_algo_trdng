@@ -193,3 +193,34 @@ Continuing with __forecast.py__
 __forecast.py__ is working. Output is nearly the same. Radial SVM is supposed to differ a bit.
 
 Now moving to __Part V__
+
+
+
+2021-01-09
+
+__Part V__
+
+#### Chapter 12 Performance Measurement
+
+Performance should be measured at multiple levels of granularity.
+
+- Assess at the level of trades, strategies and portfolios.
+
+- Assess
+  - does strategy give consistent return? is there positive backtest performance?
+  - does strategy maintain positive performance in live implementation?
+  - compare multiple startegies/portfolios, to reduce opportunity cost associated with allocation
+- Quantitative Analysis performance items
+  - Returns - percentage gain since inception; either in a backtest or live trading environment
+    - Total Return and Compound Annual Growth Rate (CAGR)
+  - Drawdowns - a period of negative performance, defined from a prior high-water mark
+  - Risk - specifically risk of capital loss (e.g. drawdowns), and volatility of returns (annualized stanard deviation of returns)
+  - Risk/Reward Ratio - risk-adjusted returns. Quantify how much risk is taken per unit of return.
+    - Sharpe Ratio, Sortino Ratio, CALMAR Ratio
+  - Trade Analysis - performance at the individual trade level, versus strategy and portfolio measures above
+    - Number of winning/loosing trades, mean profit per trade, win/loss ratio
+
+
+
+
+
