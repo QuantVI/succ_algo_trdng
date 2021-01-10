@@ -284,7 +284,7 @@ stopped end of pg 134
 
 Starting __data.py__ our Data Handler (starts on page 135)
 
-Everything from beginning through `update_bars()` was initially tested to see the error message. These functions will be filled in later.
+Everything from beginning through `update_bars()` was initially tested to see the error message. This is the starting state of the DataHandler class. These functions will be filled in later.
 
-
+continue form page 139 at the bottom `get_latest_bar_value`
 

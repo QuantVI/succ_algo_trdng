@@ -48,7 +48,7 @@ class DataHandler(object):
         try:
             bars_list = self.latest_symbol_data[symbol]
         except KeyError:
-            print("That ssymbol is not abailable in the historical data set.")
+            print("That symbol is not abailable in the historical data set.")
             raise
         else:
             return bars_list[-N:]
@@ -62,6 +62,7 @@ class DataHandler(object):
             bars_list = self.latest_symbol_data[symbol]
         except KeyError:
             print("That symbol is not available in the historical data set.")
+            raise
         else:
             return bars_list[-1][0]
 
