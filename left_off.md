@@ -278,3 +278,13 @@ Starting with event.py in Chapter 14
 
 stopped end of pg 134
 
+
+
+2021-01-10
+
+Starting __data.py__ our Data Handler (starts on page 135)
+
+Everything from beginning through `update_bars()` was initially tested to see the error message. These functions will be filled in later.
+
+
+
