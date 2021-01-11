@@ -286,5 +286,11 @@ Starting __data.py__ our Data Handler (starts on page 135)
 
 Everything from beginning through `update_bars()` was initially tested to see the error message. This is the starting state of the DataHandler class. These functions will be filled in later.
 
-continue form page 139 at the bottom `get_latest_bar_value`
+continue from page 139 at the bottom `get_latest_bar_value`
+
+
+
+2021-01-11
+
+Finished most of __data.py__ up to end of page 140. Starting __strategy.py__
 

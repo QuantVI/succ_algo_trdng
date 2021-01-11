@@ -72,7 +72,13 @@ class DataHandler(object):
         Returns one of the Open, High, Low, Close, Volume or OI
         fro mthe last bar.
         """
-        raise NotImplementedError("Should implement get_latest_bar_value")
+        try:
+            bars_list = self.latest_symbol_data[symbol]
+        except KeyError:
+            print("That symbol is not available in the historical data set.")
+            raise
+        else:
+            return getattr(bars_list[-1][1], val_type)
 
     @abstractmethod
     def get_latest_bars_values(self, symbol, val_type, N=1):
@@ -80,7 +86,13 @@ class DataHandler(object):
         Returns he last N bar values from the lastest_symbol list,
         or N-k if less available.
         """
-        raise NotImplementedError("Should implement get_latest_bars_values()")
+        try:
+            bars_list = self.get_latest_bars(symbol, N)
+        except KeyError:
+            print("That symbol is not available in the historical data set.")
+            raise
+        else:
+            return np.array([getattr(b[1], val_type) for b in bars_list])
 
     @abstractmethod
     def update_bars(self):
@@ -89,7 +101,15 @@ class DataHandler(object):
         in a tuple OHLCVI format: (datetime, open, high, low,
         close, volume, open interest).
         """
-        raise NotImplementedError("Should implement update_bars()")
+        for s in self.symbol_list:
+            try:
+                bar = next(self._get_new_bar(s))
+            except StopIteration:
+                self.continue_backtest = False
+            else:
+                if bar is not None:
+                    self.latest_symbol_data[s].append(bar)
+        self.events.put(MarketEvent())
 
 class HistoricCSVDataHandler(DataHandler):
     """
