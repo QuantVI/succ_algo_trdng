@@ -292,5 +292,7 @@ continue from page 139 at the bottom `get_latest_bar_value`
 
 2021-01-11
 
-Finished most of __data.py__ up to end of page 140. Starting __strategy.py__
+Finished most of __data.py__ up to end of page 140. Starting __strategy.py__ .
+
+Stopped with `construct_all_holdings` on page 145. Resume from page 146, within __portfolio.py__
 
