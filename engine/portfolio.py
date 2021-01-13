@@ -99,3 +99,115 @@ def update_timeindex(self, event):
     # Append the current positions
     self.all_positions.append(dp)
     
+    def update_positions_from_fill(Self,fill):
+        """
+        Take a Fill object and updates the position matrix to reflect
+        the new position.
+
+        Parameters:
+        Fill - The Fill object to update the positions with.
+        """
+        # Check whether the fill is a buy or sel
+        fill_dir = 0
+        if fille.direction == 'BUY':
+            fill_dir = 1
+        if fil.direction == 'SELL':
+            fill_dir = -1
+
+        # Update positions list with new quantities
+        self.current_positions[fill.symbol] += fill_dir*fill.quantity
+
+    def update_holdings_from_fill(self, fill):
+        """
+        Takes a Fill object and updates the holdings matrix to
+        reflect the holdings value.
+
+        Parameters:
+        fill - The Fill object to update the holdings with.
+        """
+        # Check whether the fill is a buy or sell
+        fill_dir = 0
+        if fill.direction == 'BUY':
+            fill_dir = 1
+        if fill.direction == 'SELL':
+            fill_dir = -1
+
+        # Update holdings list with new quantities
+        fill_cost = self.bars.get_latest_bar_value(fill.symbol, "adj_close") 
+        cost = fill_dir*  fill_cost * fill.quantity
+        self.current_holdings[fill.symbol] += cost
+        self.current_holdings['commission'] += fill.commission
+        self.current_holdings['cash'] -= (cost + fill.commission)
+        self.current_holdings['total'] -= (cost + fill.commission)
+        
+    def update_fill(self, event):
+        """
+        Updates the portfolio current positions and holdings
+        from a FillEvent.
+        """
+        if event.type == 'FILL':
+            self.update_positions_from_fill(event)
+            slef.update_holdings_from_fill(event)
+
+    
+    def generate_naive_order(self, signal):
+        """
+        Simply files an Order object as a constant quantity
+        sizing of the signla object, without risk management or
+        position sizing considerations.
+
+        Parameters:
+        signal - The tuple containing Signal information.
+        """
+        order = None
+
+        symbol = signal.symbol
+        direction = signal.signal_type
+        strength = signal.strength
+
+        mkt_quantity = 100
+        cur_quantity = self.current_positions[symbol]
+        order_type = 'MKT'
+
+        if direction == 'LONG' and cur_quantity == 0:
+            order = OrderEvent(symbol, order_type, mkt_quantity, 'BUY')
+        if direction == 'SHORT' and cur_quantity == 0:
+            order = OrderEvent(symbol, order_type, mkt_quantity, 'SELL')
+
+        if direction == 'EXIT' and cur_quantity > 0:
+            order = OrderEvent(symbol, order_type, abs(cur_quantity), 'SELL')
+        if direction == 'EXIT' and cur_quantity < 0:
+            order = OrderEvent(symbol, order_type, abs(cur_quantity), 'BUY')
+
+        return order
+
+    def create_equity_curve_dataframe(self):
+        """
+        Create a pandas DataFrame from the all_holdings list
+        of dictionaries.
+        """
+        curve = pd.DataFrame(self.all_holdings)
+        curve.set_index('datetime', inplace=True)
+        curve['returns'] = curve['total'].pct_change()
+        curve['equity_curve'] = (1.0+curve['returns']).cumprod()
+        self.equity_curve = curve
+
+    def output_summary_stats(self):
+        """
+        Creates a list of summary statistics for the portfolio.
+        """
+        total_return = self.equity_curve['equity_curve'][-1]
+        returns = self.equity_curve['returns']
+        pnl = self.equity_curve['equity_curve']
+
+        sharpe_ratio = create_sharpe_ratio(returns, periods=252*60*6.5)
+        drawdown, max_dd, dd_duration = create_drawdowns(pnl)
+        self.equity_curve['drawdown'] = drawdown
+
+        stats = [("Total Return", "%0.2f%%" % \
+                  ((total_return - 1.0) * 100.0)),
+                 ("Sharpe Ratio", "%0.2f" % sharpe_ratio),
+                 ("Max Drawdown", "%0.2f%%" % (max_dd * 100.0)),
+                 ("Drawdown Duration", "%d" % dd_duration)]
+        self.equity_curve.to_csv('equity.csv')
+        return stats
