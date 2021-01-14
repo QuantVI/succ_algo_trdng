@@ -165,6 +165,43 @@ Part VI - Automated Trading
     - __[performance.py]__
     - __[portfolio.py]__ - bulk of the code is here
     - __[execution.py]__
+    - _continued 2020-01-14_
+    - __backtest.py__ pg 152 - 155
+  - 14.3 Event-Driven Execution
+    - __ib_execution.py__ - skip because we can only use  backtester
+      - 156 - 161
+
+- Chapter 15 - Trading Strategy Implementation
+
+  - 15.1 Moving Average Crossover Strategy
+    - __mac.py__  pg 164-166
+  - 15.2 S&P Forecasting Trade
+    - __snp_forecast.py__ pg 168-171
+  - 15.3 Mean-Reverting Equity Pairs Trade
+    - __intraday_mr.py__ pg 173-178
+  - 15.4 Plotting Performance
+    - __plot_performance.py__ pg 179-180
+
+- Chapter 16 - Strategy Optimization
+
+  - 16.1 Parameter Optimization
+  - 16.2 Model Selection
+    - __train_test_split.py__ pg 183-185
+    - __k_fold_cross_val.py__ pg 186-187
+    - __grid_search.py__ pg 189-190
+  - 16.3 Optimizing Strategies
+    - __intraday_mr.py__ pg 191-192
+    - __backtest.py__ revision pg 192-193
+    - __plot_sharpe.py__ pg 195-196
+    - __plot_drawdown.py__ pg 196
+
+- ## Bibliography
+
+  - DONE !
+
+
+
+
 
 2020-12-31
 
@@ -307,3 +344,14 @@ resume from page 146 before `# Update holdings`
 Finished __portfolio.py__. It "compiles". Functions not tested Moving to __exectuion.py__
 
 Continue from page 150 with (creation of) __execution.py__
+
+Starting __execution.py__
+
+Finished __Executions.py__
+
+Continue with __backtest.py__ on page 152
+
+- finished outlines the rest of the book, above.
+
+
+
