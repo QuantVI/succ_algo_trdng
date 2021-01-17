@@ -109,7 +109,34 @@ class Backtest(object):
 
                             elif event.type == 'FILL':
                                 self.fills += 1
-                                self.portfolio.update_fill
+                                self.portfolio.update_fill(event)
+
+                time.sleep(self.heartbeat)
+
+        def _output_performance(self):
+            """
+            Outputs the strategy performance from the backtest.
+            """
+            self.portfolio.create_equity_curve_dataframe()
+
+            print("Creating summary stats...")
+            stats = self.portfolio.output_summary_stats()
+
+            print("Creating equity curve...")
+            print(self.portfolio.equity_curve.tail(10))
+            pprint.pprint(stats)
+
+            print("Signals: %s" % self.signals)
+            print("Orders: %s" % self.orders)
+            print("Fills: %s" % self.fills)
+
+        def simulate_trading(self):
+            """
+            Simulates the backtest and outputs portfolio performance.
+            """
+            sle._run_backtest()
+            self._output_performace()
+            
 
 
 
