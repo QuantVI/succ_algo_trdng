@@ -333,11 +333,15 @@ Finished most of __data.py__ up to end of page 140. Starting __strategy.py__ .
 
 Stopped with `construct_all_holdings` on page 145. Resume from page 146, within __portfolio.py__
 
+
+
 2021-01-12
 
 __portfolio.py__
 
 resume from page 146 before `# Update holdings`
+
+
 
 2021-01-13
 
@@ -354,4 +358,8 @@ Continue with __backtest.py__ on page 152
 - finished outlines the rest of the book, above.
 
 Continue with __backtest.py__ page 154
+
+
+
+2021-01-17
 

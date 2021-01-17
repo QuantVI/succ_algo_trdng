@@ -109,6 +109,7 @@ class Backtest(object):
 
                             elif event.type == 'FILL':
                                 self.fills += 1
+                                self.portfolio.update_fill
 
 
 
