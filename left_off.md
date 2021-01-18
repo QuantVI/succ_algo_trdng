@@ -365,5 +365,7 @@ Continue with __backtest.py__ page 154
 
 skipping __ib_execution.py __pg 155-161
 
+starting __mac.py__ for moving average crossover strategy
 
+continue from  the end of __maps.py__ pg 166
 
