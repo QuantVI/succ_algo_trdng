@@ -15,7 +15,7 @@ from data import HistoricCSVDataHandler
 from execution import SimulatedExecutionHandler
 from portfolio import Portfolio
 
-class MovingAverageCrossSTrategy(Strategy):
+class MovingAverageCrossStrategy(Strategy):
     """
     Carries out a basic Moving Average Crossover strategy with a
     short/long simple weighted moving average. Defauly short/long

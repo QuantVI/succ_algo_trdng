@@ -367,5 +367,16 @@ skipping __ib_execution.py __pg 155-161
 
 starting __mac.py__ for moving average crossover strategy
 
-continue from  the end of __maps.py__ pg 166
+continue from  the end of __mac.py__ pg 166
+
+
+
+2021-01-23
+
+had to fix typos and indentation issues in a few files
+
+- backtest.py
+- mac.py
+
+
 
