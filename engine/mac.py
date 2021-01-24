@@ -90,11 +90,12 @@ class MovingAverageCrossStrategy(Strategy):
                         self.bought[s] = 'OUT'
 
 if __name__ == "__main__":
-    csv_dir = '/path/tp/ypu/csv/file'   # CHANGE THIS!
+    csv_dir = '../csv_repo/AAPL.csv'   # CHANGE THIS! (changed)
     symbol_list = ['AAPL']
     initial_capital = 100000.0
     heartbeat = 0.0
     start_date = datetime.datetime(2010, 1, 1, 0, 0, 0) # orignally 1990
+    # range is 2010-01-04 to 2020-12-31 inclusive
 
     backtest = Backtest(
         csv_dir, symbol_list, initial_capital, heartbeat,
