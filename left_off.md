@@ -380,7 +380,7 @@ had to fix typos and indentation issues in a few files
 
 Within mac.py we will just manually download the AAPL data from Yahoo.
 
-Within __data.py__ the pandas.io.parsers.read_csv which creates a DataFrame does not have a .sort() method, but instead a .sort_values() method. Must specify what to sort by. Thus us of `.sort()` within the `_open_convert_csv_files()` function was changes to `.sort_values('datetime)` as there was an error stating that a DataFrame doesn't (or maybe no longer) has a `.sort()` method.
+Within __data.py__ the `pandas.io.parsers.read_csv` which creates a _DataFrame_ does not have a `.sort()` method, but instead a `.sort_values()` method. Must specify what to sort by. Thus us of `.sort()` within the `_open_convert_csv_files()` function was changes to `.sort_values('datetime)` as there was an error stating that a _DataFrame_ doesn't (or maybe no longer) has a `.sort()` method.
 
 
 
@@ -401,9 +401,21 @@ Had to review a few files. But `generate_trading_instances`actually has to to wi
 
 In __portfolio.py__ forgot to write `construct_current_holdings()` and `update_signal()` functions
 
+After many fixes in __portfolio.py__, __mac.py__ is running. Still have an error though.
 
+! Problem. Now that __mac.py__runs, the stats are atrocious. Return is a huge negative. Going to download the exact period for the book to compare. Some calculations may have been keyed incorrectly.
 
+- Book period for AAPL test of __mac.py__ is 1990-01-01 to 2001-12-31
 
+  - 1st trading day in the data is 1990-01-02 as Jan 1 there was no trading.
+
+- Even after using the same date/data range, our results are too different.
+
+  - There must be an issue in what was written.
+  - Areas of calculation within portfolio, backtest, data and execution need to be checked
+  - __mac.py__ should also be reviewed for calculation issues.
+
+  
 
 
 

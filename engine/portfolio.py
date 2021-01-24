@@ -133,9 +133,9 @@ class Portfolio(object):
         """
         # Check whether the fill is a buy or sel
         fill_dir = 0
-        if fille.direction == 'BUY':
+        if fill.direction == 'BUY':
             fill_dir = 1
-        if fil.direction == 'SELL':
+        if fill.direction == 'SELL':
             fill_dir = -1
 
         # Update positions list with new quantities
@@ -171,7 +171,7 @@ class Portfolio(object):
         """
         if event.type == 'FILL':
             self.update_positions_from_fill(event)
-            slef.update_holdings_from_fill(event)
+            self.update_holdings_from_fill(event)
 
     
     def generate_naive_order(self, signal):
@@ -206,7 +206,13 @@ class Portfolio(object):
         return order
 
     def update_signal(self, event):
-        pass
+        """
+        Acts on a SignalEvent to generate new orders
+        based on the portfolio logic.
+        """
+        if event.type == 'SIGNAL':
+            order_event = self.generate_naive_order(event)
+            self.events.put(order_event)
 
     def create_equity_curve_dataframe(self):
         """
