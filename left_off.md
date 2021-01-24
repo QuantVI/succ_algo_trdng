@@ -399,6 +399,8 @@ TypeError: object() takes no parameters`
 
 Had to review a few files. But `generate_trading_instances`actually has to to with when we are setting the `self.portfolio` attribute within __backtest.py__. Finally, noticed this after going through many other files. The I went into __portfolio.py.__ The problem was that I didn't indent the function `def` after the Class `def` So everything below was also missing an additional indent. More importantly, this means that the Portfolio object didn't have an `__init__` function. Hence the "`object`() takes no parameters".
 
+In __portfolio.py__ forgot to write `construct_current_holdings()` and `update_signal()` functions
+
 
 
 

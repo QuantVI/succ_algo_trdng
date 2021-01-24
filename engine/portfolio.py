@@ -49,7 +49,7 @@ class Portfolio(object):
         self.current_positions = dict( (k,v) for k, v in \
                                        [(s, 0) for s in self.symbol_list] )
         self.all_holdings = self.construct_all_holdings()
-        self.current_hodlings = self.construct_currenct_holdings()
+        self.current_holdings = self.construct_current_holdings()
         
     def construct_all_positions(self):
         """
@@ -61,16 +61,27 @@ class Portfolio(object):
         return [d]
 
     def construct_all_holdings(self):
-            """
-            Constructs the holding list using the start_date
-            to determine when the time index will begin.
-            """
-            d = dict( (k,v) for k, v in [(s, 0.0) for s in self.symbol_list] )
-            d['datetime'] = self.start_date
-            d['cash'] = self.initial_capital
-            d['commission'] = 0.0
-            d['total'] = self.initial_capital
-            return d
+        """
+        Constructs the holding list using the start_date
+        to determine when the time index will begin.
+        """
+        d = dict( (k,v) for k, v in [(s, 0.0) for s in self.symbol_list] )
+        d['datetime'] = self.start_date
+        d['cash'] = self.initial_capital
+        d['commission'] = 0.0
+        d['total'] = self.initial_capital
+        return [d]
+
+    def construct_current_holdings(self):
+        """
+        This constructs the dictionary which will hold the instantaneous
+        value of the portfolio across all symbols.
+        """
+        d = dict( (k,v) for k, v in [(s, 0.0) for s in self.symbol_list])
+        d['cash'] = self.initial_capital
+        d['commission'] = 0.0
+        d['total'] = self.initial_capital
+        return d
         
     def update_timeindex(self, event):
         """
@@ -85,7 +96,6 @@ class Portfolio(object):
             )
         # Update positions
         # ================
-
         dp = dict( (k,v) for k,v in [(s, 0) for s in self.symbol_list] )
         dp['datetime'] = latest_datetime
 
@@ -94,8 +104,26 @@ class Portfolio(object):
 
         # Append the current positions
         self.all_positions.append(dp)
+
+        # Update holdings
+        # ===============
+        dh = dict( (k,v) for k,v in [(s,0) for s in self.symbol_list] )
+        dh['datetime'] = latest_datetime
+        dh['cash'] = self.current_holdings['cash']
+        dh['commission'] = self.current_holdings['commission']
+        dh['total'] = self.current_holdings['cash']
+
+        for s in self.symbol_list:
+            # Approximation to the real value
+            market_value = self.current_positions[s] * \
+                           self.bars.get_latest_bar_value(s, "adj_close")
+            dh[s] = market_value
+            dh['total'] += market_value
+
+        # Append the current holdings
+        self.all_holdings.append(dh)
     
-    def update_positions_from_fill(Self,fill):
+    def update_positions_from_fill(self,fill):
         """
         Take a Fill object and updates the position matrix to reflect
         the new position.
@@ -130,7 +158,7 @@ class Portfolio(object):
 
         # Update holdings list with new quantities
         fill_cost = self.bars.get_latest_bar_value(fill.symbol, "adj_close") 
-        cost = fill_dir*  fill_cost * fill.quantity
+        cost = fill_dir *  fill_cost * fill.quantity
         self.current_holdings[fill.symbol] += cost
         self.current_holdings['commission'] += fill.commission
         self.current_holdings['cash'] -= (cost + fill.commission)
@@ -176,6 +204,9 @@ class Portfolio(object):
             order = OrderEvent(symbol, order_type, abs(cur_quantity), 'BUY')
 
         return order
+
+    def update_signal(self, event):
+        pass
 
     def create_equity_curve_dataframe(self):
         """

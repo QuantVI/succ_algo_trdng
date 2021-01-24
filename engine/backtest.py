@@ -134,7 +134,7 @@ class Backtest(object):
         """
         Simulates the backtest and outputs portfolio performance.
         """
-        sle._run_backtest()
+        self._run_backtest()
         self._output_performace()
 
 
