@@ -23,7 +23,7 @@ class MovingAverageCrossStrategy(Strategy):
     """
 
     def __init__(
-        self, bars, events, short_window=100, long_windows=400
+        self, bars, events, short_window=100, long_window=400
         ):
         """
         Initializes the Moving Average Cross Strategy.
@@ -36,7 +36,7 @@ class MovingAverageCrossStrategy(Strategy):
         """
         self.bars = bars
         self.symbol_list = self.bars.symbol_list
-        self.event = events
+        self.events = events
         self.short_window = short_window
         self.long_window = long_window
 
@@ -90,7 +90,7 @@ class MovingAverageCrossStrategy(Strategy):
                         self.bought[s] = 'OUT'
 
 if __name__ == "__main__":
-    csv_dir = '../csv_repo/AAPL.csv'   # CHANGE THIS! (changed)
+    csv_dir = '../csv_repo/'   # CHANGE THIS! (changed)
     symbol_list = ['AAPL']
     initial_capital = 100000.0
     heartbeat = 0.0

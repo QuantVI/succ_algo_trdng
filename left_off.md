@@ -375,8 +375,35 @@ continue from  the end of __mac.py__ pg 166
 
 had to fix typos and indentation issues in a few files
 
-- backtest.py
-- mac.py
+- __backtest.py__
+- __mac.py__
+
+Within mac.py we will just manually download the AAPL data from Yahoo.
+
+Within __data.py__ the pandas.io.parsers.read_csv which creates a DataFrame does not have a .sort() method, but instead a .sort_values() method. Must specify what to sort by. Thus us of `.sort()` within the `_open_convert_csv_files()` function was changes to `.sort_values('datetime)` as there was an error stating that a DataFrame doesn't (or maybe no longer) has a `.sort()` method.
+
+
+
+Found a huge mistake
+
+- When running __mac.py__ I got an error 
+
+`Traceback (most recent call last):
+  File "C:\Users\SSBlue\OneDrive\1_general\su_al_tr\succ_algo_trdng\engine\mac.py", line 103, in <module>
+    Portfolio, MovingAverageCrossStrategy
+  File "C:\Users\SSBlue\OneDrive\1_general\su_al_tr\succ_algo_trdng\engine\backtest.py", line 55, in __init__
+    self._generate_trading_instances()
+  File "C:\Users\SSBlue\OneDrive\1_general\su_al_tr\succ_algo_trdng\engine\backtest.py", line 73, in _generate_trading_instances
+    self.initial_capital)
+TypeError: object() takes no parameters`
+
+Had to review a few files. But `generate_trading_instances`actually has to to with when we are setting the `self.portfolio` attribute within __backtest.py__. Finally, noticed this after going through many other files. The I went into __portfolio.py.__ The problem was that I didn't indent the function `def` after the Class `def` So everything below was also missing an additional indent. More importantly, this means that the Portfolio object didn't have an `__init__` function. Hence the "`object`() takes no parameters".
+
+
+
+
+
+
 
 
 
