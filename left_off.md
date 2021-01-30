@@ -422,7 +422,10 @@ After many fixes in __portfolio.py__, __mac.py__ is running. Still have an error
 
 Need to find the issue with __mac.py__
 
-
+- __mac.py__: pg 164
+  - seems okay
+- __backtest.py__ pg 152
+  - 
 
 
 

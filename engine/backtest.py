@@ -58,10 +58,10 @@ class Backtest(object):
         """
         Generate the trading instance objects from their class types.
         """
-        s1 = "Creating DataHandler, Strategy"
-        s2 = ", Portfolio and ExecutionHandler"
-        s3 = s1 + s2
-        print(s3)
+        str_1 = "Creating DataHandler, Strategy"
+        str_2 = ", Portfolio and ExecutionHandler"
+        str_3 = str_1 + str_2
+        print(str_3)
         self.data_handler = self.data_handler_cls(self.events,
                                                   self.csv_dir,
                                                   self.symbol_list)

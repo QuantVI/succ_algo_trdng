@@ -69,8 +69,8 @@ class MovingAverageCrossStrategy(Strategy):
                     )
                 bar_date = self.bars.get_latest_bar_datetime(s)
                 if bars is not None and bars != []:
-                    short_sma = np.mean(bars[-self.short_window:])
-                    long_sma = np.mean(bars[-self.long_window:])
+                    short_sma = np.mean(bars[-1*self.short_window:])
+                    long_sma = np.mean(bars[-1*self.long_window:])
 
                     symbol = s
                     dt = datetime.datetime.utcnow()
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     symbol_list = ['AAPL']
     initial_capital = 100000.0
     heartbeat = 0.0
-    start_date = datetime.datetime(2010, 1, 1, 0, 0, 0) # orignally 1990
+    start_date = datetime.datetime(1990, 1, 1, 0, 0, 0) # orignally 1990
     # range is 2010-01-04 to 2020-12-31 inclusive
 
     backtest = Backtest(
