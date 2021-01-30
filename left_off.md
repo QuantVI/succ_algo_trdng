@@ -415,7 +415,12 @@ After many fixes in __portfolio.py__, __mac.py__ is running. Still have an error
   - Areas of calculation within portfolio, backtest, data and execution need to be checked
   - __mac.py__ should also be reviewed for calculation issues.
 
-  
+
+
+
+2021-01-30
+
+Need to find the issue with __mac.py__
 
 
 
