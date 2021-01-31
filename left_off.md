@@ -429,3 +429,7 @@ Need to find the issue with __mac.py__
 
 
 
+2021-01-31
+
+Let's comeback to checkinh those file slater. Need to knoe wthat everything is finished, and then attempt to substitute with the neural network
+
