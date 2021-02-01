@@ -433,3 +433,13 @@ Need to find the issue with __mac.py__
 
 Let's comeback to checkinh those file slater. Need to knoe wthat everything is finished, and then attempt to substitute with the neural network
 
+I don't remember creating a separate file for create_lagged_series, but page
+
+ 168 seems to think that was the case. `create_lagged_series` exists as a function within forecast.py, but nowhere else. This must be a typo.
+
+2021-02-01
+
+This won;t eb done int time for the project. Unless the __mac.py__ issue if fixed, this needs to be put on ice.
+
+
+

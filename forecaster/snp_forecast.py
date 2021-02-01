@@ -20,3 +20,10 @@ from engine.portfolio import Portfolio
 # create_lagged_series is a function within forecast.py
 # forecast.py is in the forecaster folder, with this script
 from forecast import create_lagged_series
+
+class SPYDailyForecastStrategy(Strategy):
+    """
+    S&P500 forecast straegy. It uses a Quadratic Discriminant Analyzer
+    to predict the returns for a subsequent time periods
+    and then generated long/exit signals based on the prediction.
+    """
